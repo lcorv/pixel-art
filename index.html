@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10.0, minimum-scale=.25, user-scalable=yes"/>
+    <title>PixelArt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+    <nav class="top-nav nav">
+        <div class="prev-next">
+          <button class="save"><i class="fa fa-solid fa-save"></i></button>
+          <button class="prev" disabled><i class="fa fa-solid fa-rotate-left"></i></button>
+          <button class="next" disabled><i class="fa fa-solid fa-rotate-right"></i></button>
+        </div>
+        <div class="color-container">
+                  <i class="fa fa-solid fa-pen"></i><input type='color' class="hex" value="#000000">
+          <div class="selected-color">#000000</div>
+        </div>
+    </nav>
+        <div class="table">
+
+        </div>
+        <div class="palette"></div>
+        <nav class="actions nav bottom-nav">
+        <button class="gen">Genera</button>
+        <button class="saved">Salvati</button>
+        <div>
+        <select class="size" id="size">
+                <option value="15">15</option>
+                <option selected value="16">16</option>
+                <option value="20">20</option>
+                <option value="32">32</option>
+        </select>
+        </div>
+        <button class="clear">Cancella</button>
+    </nav>
+    </div>
+    <div class="modal-container">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+            </div>
+            <h2>Output</h2>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
