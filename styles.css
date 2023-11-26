@@ -281,6 +281,9 @@ nav{
     align-items: center;
     height: 100%;
 }
+.canvas-body img{
+    width: 100%;
+}
 @keyframes result{
     0%{transform:sclae(0);}
     30%{transform:scale(1.1);}
