@@ -13,6 +13,7 @@ body {
 }
 *{
     box-sizing:border-box;
+    user-select:none;
 }
 *::-webkit-scrollbar{
     display: none;
@@ -24,6 +25,9 @@ select, button{
     border-radius:5px;
     margin:0 10px;
     cursor: pointer;
+}
+.saved i{
+  margin-right:5px;
 }
 nav{
     width:100%;
@@ -48,6 +52,23 @@ nav{
     border-collapse:collapse;
     padding:70px 0px;
 }
+.dropper{
+  padding:5px;
+  border-radius:5px;
+  border: 1px solid #fff5;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.dropper .fa{
+  transition: all 0.5s
+}
+.pushed{
+  background-color:#fff2;
+  box-shadow:inset 5px 5px 5px #0004;
+}
+.pushed .fa{
+   transform:scale(0.8);
+}
 .hex{
     transition:background-color 0.2s;
     border-radius:5px;
@@ -69,7 +90,7 @@ nav{
     touch-action:none;
 }
 .cell{
-    border:0.5px solid #8882;
+    border:0.1px solid #8882;
     width: calc(var(--width) / var(--cellNum));
     height: calc(var(--width) / var(--cellNum));
 }
@@ -127,7 +148,7 @@ nav{
     justify-content: space-around;
     align-items:center;
 }
-.modal{
+.modal, .canvas{
     --pos:translateY(100%);
     color:var(--text);
     height:600px;
@@ -143,11 +164,11 @@ nav{
     text-align:left;
     text-wrap:balance;
 }
-.modal-header{
+.canvas-header, .modal-header{
     display:flex;
     justify-content:end;
 }
-.modal-header .close{
+.canvas-header .close-canvas, .modal-header .close{
     color:var(--primary);
     border-radius:50%;
     font-size:30px;
@@ -164,16 +185,34 @@ nav{
 .modal-body{
     overflow:scroll;
     height:400px;
+    border:1px solid #fff2;
+    display:flex;
+    flex-wrap:wrap;
+}
+.arr-container{
+  user-select:text;
+  background-color:#fff2;
 }
 .modal-body span{
     margin:5px;
 }
 .row{
     display:flex;
+    flex-wrap:wrap;
     align-items:center;
     justify-content:start;
-    margin:10px 0;
+    padding:10px 0;
     width:100%;
+    border:1px solid #fff2;
+    border-width:0 0 1px 0;
+}
+.square{
+  display:flex;
+  align-items:center;
+}
+.square .cell{
+  width:20px;
+  height:20px;
 }
 .section label:not(.switch){
     min-width:50%;
@@ -204,11 +243,43 @@ nav{
     justify-content: space-between;
 }
 .saved-option{
+    position: relative;
     cursor: pointer;
-    padding: 20px;
+    height: 60px;
+    background-color: #fff5;
+    margin:10px;
+    width:50%;
+    text-align:center;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.saved-option .fa{
+  margin-right: 5px;
 }
 .saved-option:hover{
     border: 1px solid #ff0;
+}
+.delete-btn{
+  background-color:#f66;
+  color:white;
+}
+.canvas-container{
+    height: 100svh;
+    width: 100svw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--background);
+    display: none;
+    z-index: 100;
+}
+.canvas-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 @keyframes result{
     0%{transform:sclae(0);}
@@ -234,7 +305,7 @@ nav{
     from{transform:var(--pos)}
     to{transform:translateY(0);}
 }
-@media screen and ( min-width:600px){
+@media screen and ( min-width:500px){
     :root{
         --width: 500px;
     }
@@ -251,4 +322,14 @@ nav{
         align-items: center;
         justify-content: space-between;
     }
+    .saved-option .fa{
+        display: none;
+        position: absolute;
+        right: 10px;
+        top: calc(50% - 10px);
+      }
+      .saved-option:hover .fa{
+          display: block;
+      }
 }
+
