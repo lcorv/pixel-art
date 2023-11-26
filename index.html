@@ -4,6 +4,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10.0, minimum-scale=.25, user-scalable=yes"/>
     <title>PixelArt</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -23,7 +24,10 @@
           <button class="next" disabled><i class="fa fa-solid fa-rotate-right"></i></button>
         </div>
         <div class="color-container">
-                  <i class="fa fa-solid fa-pen"></i><input type='color' class="hex" value="#000000">
+          <span class='dropper'>
+                  <i class="fa fa-solid fa-eye-dropper"></i>
+         </span>   
+                <input type='color' class="hex" value="#000000">
           <div class="selected-color">#000000</div>
         </div>
     </nav>
@@ -32,8 +36,9 @@
         </div>
         <div class="palette"></div>
         <nav class="actions nav bottom-nav">
-        <button class="gen">Genera</button>
-        <button class="saved">Salvati</button>
+        <button class="gen"><i class='fa fa-solid fa-print'></i></button>
+        <button class="print"><i class="fa fa-solid fa-image"></i></button>
+        <button class="saved"><i class='fa fa-solid fa-folder'></i><span>Apri</span></button>
         <div>
         <select class="size" id="size">
                 <option value="15">15</option>
@@ -42,15 +47,25 @@
                 <option value="32">32</option>
         </select>
         </div>
-        <button class="clear">Cancella</button>
+        <button class="clear"><i class='fa fa-solid fa-eraser'></i></button>
     </nav>
+    </div>
+    <div class="canvas-container">
+        <div class="canvas">
+            <div class="canvas-header">
+                <span class="close-canvas">&times;</span>
+            </div>
+            <div class="canvas-body">
+
+            </div>
+        </div>
     </div>
     <div class="modal-container">
         <div class="modal">
             <div class="modal-header">
                 <span class="close">&times;</span>
             </div>
-            <h2>Output</h2>
+            <h2 class="modal-title">Output</h2>
             <div class="modal-body">
             </div>
         </div>
