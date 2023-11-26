@@ -8,6 +8,7 @@ window.onload = () => {
     var title = 'senza-titolo';
     //window.localStorage.removeItem('savedPatterns');
     var saved = JSON.parse(window.localStorage.getItem('pattern'))
+    var saved = [["#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"],["#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"],["#ffffff","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#ffffff"],["#ffffff","#000000","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#000000","#ffffff"],["#ffffff","#000000","#2d2d2d","#969696","#969696","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#969696","#969696","#2d2d2d","#000000","#ffffff"],["#ffffff","#000000","#969696","#000000","#000000","#1e1e1e","#c19d0a","#c19d0a","#c19d0a","#c19d0a","#ffffff","#000000","#ffffff","#000000","#1e1e1e","#b4b4b4","#b4b4b4","#969696","#000000","#ffffff"],["#ffffff","#000000","#000000","#5a5a5a","#5a5a5a","#1e1e1e","#c19d0a","#c19d0a","#c19d0a","#c19d0a","#000000","#ffffff","#000000","#ffffff","#1e1e1e","#878787","#878787","#b4b4b4","#000000","#ffffff"],["#ffffff","#000000","#000000","#5a5a5a","#5a5a5a","#1e1e1e","#c19d0a","#c19d0a","#c19d0a","#c19d0a","#c19d0a","#c19d0a","#c19d0a","#c19d0a","#1e1e1e","#878787","#878787","#b4b4b4","#000000","#ffffff"],["#ffffff","#000000","#969696","#000000","#000000","#1e1e1e","#c19d0a","#c19d0a","#c19d0a","#c19d0a","#c19d0a","#c19d0a","#c19d0a","#c19d0a","#1e1e1e","#b4b4b4","#b4b4b4","#969696","#000000","#ffffff"],["#ffffff","#000000","#2d2d2d","#969696","#969696","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#969696","#969696","#2d2d2d","#000000","#ffffff"],["#ffffff","#000000","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#1e1e1e","#000000","#ffffff"],["#ffffff","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#ffffff"],["#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"],["#ffffff","#ffffff","#ffffff","#000000","#ffffff","#ffffff","#ffffff","#000000","#ffffff","#000000","#ffffff","#ffffff","#000000","#ffffff","#ffffff","#ffffff","#000000","#000000","#ffffff","#ffffff"],["#ffffff","#ffffff","#ffffff","#000000","#ffffff","#ffffff","#ffffff","#000000","#ffffff","#000000","#ffffff","#ffffff","#000000","#ffffff","#ffffff","#000000","#ffffff","#ffffff","#ffffff","#ffffff"],["#ffffff","#ffffff","#ffffff","#ffffff","#000000","#ffffff","#000000","#ffffff","#ffffff","#000000","#000000","#000000","#000000","#ffffff","#ffffff","#ffffff","#000000","#ffffff","#ffffff","#ffffff"],["#ffffff","#ffffff","#ffffff","#ffffff","#000000","#ffffff","#000000","#ffffff","#ffffff","#000000","#ffffff","#ffffff","#000000","#ffffff","#ffffff","#ffffff","#ffffff","#000000","#ffffff","#ffffff"],["#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#000000","#ffffff","#ffffff","#ffffff","#000000","#ffffff","#ffffff","#000000","#ffffff","#ffffff","#000000","#000000","#ffffff","#ffffff","#ffffff"],["#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"],["#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"]]
     var pointer = false;
     const close = qs(".close");
     const palette = qs(".palette");
@@ -16,6 +17,7 @@ window.onload = () => {
     const colorDisp = qs(".selected-color");
     const hexDisp = qs('.hex');
     var cellNum = 20;
+    var colorPick = false;
     //77 7f ff 7e
     function createColor(hex) {
         let color = ce('div');
@@ -91,7 +93,8 @@ window.onload = () => {
 
     //load table cells
     function loadTable(pattern) {
-        cellNum = pattern.length; document.documentElement.style.setProperty("--cellNum", cellNum)
+        cellNum = pattern.length;
+        qs('#size').value = cellNum; document.documentElement.style.setProperty("--cellNum", cellNum)
         elements = [];
         tableArr = pattern;
         table.innerHTML = ''
@@ -114,12 +117,14 @@ window.onload = () => {
     }
     story.push(JSON.stringify(tableArr));
     clear.addEventListener('click', () => {
-        genTable(cellNum)
+        genTable(cellNum);
+        addToStory();
     })
 
     //resize table
     size.addEventListener('change', () => {
         genTable(parseInt(size.value))
+        addToStory();
     })
 
     function selectElement(el) {
@@ -132,6 +137,11 @@ window.onload = () => {
     }
 
     //story
+    function addToStory(){
+      storyIndex++;
+      story = story.slice(0, storyIndex)
+      story.push(JSON.stringify(tableArr));
+    }
     function storyBack() {
         if (storyIndex > 0) {
             storyIndex--;
@@ -166,13 +176,8 @@ window.onload = () => {
     function changeColor(el) {
         el.style.backgroundColor = selectedColor;
     }
-
-    function selectColor(value) {
-        color = value;
-
-    }
-
     function countCells() {
+        qs('.modal-title').innerHTML = 'Pattern';
         let output = '';
         for (i = 0; i < cellNum; i++) {
             output += `<div class="row"> ${i + 1})`;
@@ -183,12 +188,12 @@ window.onload = () => {
                     counter++;
                 }
                 else {
-                    output = `${output} <span>${counter}</span><div class="cell" style="background-color:${col}"></div> `;
+                    output = `${output}<div class='square'><span>${counter}</span><div class="cell" style="background-color:${col}"></div></div>  `;
                     counter = 1;
                     col = tableArr[i][cell];
                 }
                 if (cell == cellNum - 1) {
-                    output = `${output}<span>${counter}</span><div class="cell" style="background-color:${tableArr[i][cell]};display:inline-block"></div></div>`;
+                    output = `${output}<div class='square'><span>${counter}</span><div class="cell" style="background-color:${tableArr[i][cell]};display:inline-block"></div></div></div>`;
                     counter = 1;
                     col = tableArr[i][cell];
                 }
@@ -201,6 +206,33 @@ window.onload = () => {
         modalBody.appendChild(arrContainer);
     }
 
+    //pick a color from the table
+    function rgbToHex(rgb){
+      color = rgb.split(',');
+      color =`#${decToHex(color[0].slice(4))}${decToHex(color[1])}${decToHex(color[2].slice(0,-1))}`;
+      return color;
+    }
+    function decToHex(num){
+      num = parseInt(num);
+      num = num.toString(16);
+      if(num.length<2){
+        num = "0"+num;
+      }
+      return num
+    }
+    function pickColor(el){
+      let color = rgbToHex(el.style.backgroundColor);
+      let colorsDivs = document.querySelectorAll('.color');
+      colorsDivs.forEach((el) => el.classList.remove('selected'));
+      colorsDivs.forEach((el)=>{
+        if(rgbToHex(el.style.backgroundColor) == color){
+            el.classList.add('selected')
+        }
+      })
+      selectedColor = color;
+      hexDisp.value = color;
+      colorDisp.innerHTML = color;   
+    }
     function select(element, selectorX, selectorY) {
         let crossX = false;
         let crossY = false;
@@ -229,7 +261,12 @@ window.onload = () => {
             crossY = true;
         }
         if (crossX == true && crossY == true) {
+            if(!colorPick){
             selectElement(element)
+            }
+            else{
+              pickColor(element);
+            }
         }
         else {
             // element.style.border='none'
@@ -257,13 +294,15 @@ window.onload = () => {
     })
 
     table.addEventListener('pointerup', () => {
-        save();
-        storyIndex++;
-        story = story.slice(0, storyIndex)
-        story.push(JSON.stringify(tableArr));
-        qs('.next').disabled = true;
-        qs('.prev').disabled = false;
+        if(!colorPick){
+          save();
+          addToStory();
+          qs('.next').disabled = true;
+          qs('.prev').disabled = false;
+        }   
         pointer = false;
+        colorPick = false;
+        qs('.dropper').classList.remove('pushed');
     })
 
     gen.addEventListener('click', () => {
@@ -272,6 +311,7 @@ window.onload = () => {
     })
     function displaySaved() {
         modalBody.innerHTML = '';
+        qs('.modal-title').innerHTML = 'Salvati';
         let savedPatterns = window.localStorage.getItem('savedPatterns');
         if (savedPatterns) {
             JSON.parse(savedPatterns).forEach((pattern) => {
@@ -280,17 +320,19 @@ window.onload = () => {
                 saved.className = 'saved-container';
                 opt = ce('div');
                 opt.className = 'saved-option';
-                opt.innerHTML = pattern.name;
+                opt.innerHTML = `<div><i class='fa fa-solid fa-folder-open'></i></div> ${pattern.name}`;
                 opt.addEventListener('click', () => {
                     let pattern = JSON.parse(savedPatterns).filter((pattern) =>
                         pattern.name == saved.value
                     )
                     loadTable(pattern[0].pattern);
+                    addToStory();
                     title = pattern[0].name;
                     closeModal();
                 })
                 btn = ce('button');
                 btn.innerHTML = `<i class="fa fa-solid fa-trash"></i>`;
+                btn.className = "delete-btn"
                 btn.addEventListener('click', ()=>{
                     deleteLocal(pattern.name)
                 });
@@ -388,5 +430,60 @@ window.onload = () => {
     })
     modal.addEventListener('click', (e) => {
         e.stopPropagation()
+    })
+    let canvas = qs('.canvas')
+    let canvasContainer = qs('.canvas-container');
+    let closeCanvasBtn = canvas.querySelector('.close-canvas');
+    let canvasBody = qs('.canvas-body');
+    qs('.print').addEventListener('click',()=>{
+        canvasBody.innerHTML='';
+        html2canvas(table).then(canvas => {
+            let image = ce('img');
+            image.src = canvas.toDataURL('image/png');
+            image.addEventListener('click',()=>{
+                let link = ce('a');
+                link.download = title + '.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click()
+            })
+            canvasBody.appendChild(image);
+            openCanvas();
+        });
+    })
+      //canvas
+      function closeCanvas() {
+        canvas.style.animation = '';
+        canvas.style.animation = 'close 0.2s forwards';
+        window.setTimeout(() => {
+            canvasContainer.style.display = 'none';
+            canvasContainer.style.animation = 'closecanvas 0.1s 1 forwards';
+            canvasContainer.style.animation = '';
+        }, 200)
+    }
+    function openCanvas() {
+        canvas.style.animation = 'open 0.2s forwards'
+        canvasContainer.style.display = 'flex';
+    }
+    //close canvas
+    closeCanvasBtn.addEventListener('click', () => {
+        closeCanvas();
+    })
+    canvasContainer.addEventListener('click', () => {
+        closeCanvas();
+    })
+    canvas.addEventListener('click', (e) => {
+        e.stopPropagation()
+    })
+
+    //pick color
+    qs('.dropper').addEventListener('click',()=>{
+     if(!colorPick){
+      qs('.dropper').classList.add('pushed');
+      colorPick = true;
+      }
+      else{
+      qs('.dropper').classList.remove('pushed');
+      colorPick = false;
+      }
     })
 }
