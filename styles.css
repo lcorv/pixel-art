@@ -331,8 +331,11 @@ nav{
         right: 10px;
         top: calc(50% - 10px);
       }
-      .saved-option:hover .fa{
+    .saved-option:hover .fa{
           display: block;
       }
+    .canvas-body img{
+        width: 40%;
+}
 }
 
