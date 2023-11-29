@@ -14,7 +14,7 @@ body {
 *{
     box-sizing:border-box;
     user-select:none;
-}
+ }
 *::-webkit-scrollbar{
     display: none;
 }
@@ -89,8 +89,24 @@ nav{
     height:var(--width);
     touch-action:none;
 }
+.print-container{
+    --first:#000;
+    --second:#fff;
+    height:100svh;
+    background:linear-gradient(var(--first) 50%, var(--second) 50%);
+}
+.table-print{
+  position:relative;
+  top: calc(50vh - var(--width) / 2);
+  margin:auto 0;
+  justify-content:center;
+}
+.table-print .cell{
+    transform:scale(1.01);
+    border:0px solid #8882;
+}
 .cell{
-    border:0.1px solid #8882;
+    border:0.2px solid #8882;
     width: calc(var(--width) / var(--cellNum));
     height: calc(var(--width) / var(--cellNum));
 }
@@ -149,9 +165,9 @@ nav{
     align-items:center;
 }
 .modal, .canvas{
+    
     --pos:translateY(100%);
     color:var(--text);
-    height:600px;
     width:100vw;
     background-color:var(--background);
     border-radius:10px 10px 0 0;
@@ -167,6 +183,10 @@ nav{
 .canvas-header, .modal-header{
     display:flex;
     justify-content:end;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100vw;
 }
 .canvas-header .close-canvas, .modal-header .close{
     color:var(--primary);
@@ -181,17 +201,23 @@ nav{
     justify-content:center;
     cursor: pointer;
     font-weight:bolder;
+    z-index:2;
+    text-shadow:2px 2px 5px #0004;
+    color:#f66;
+    margin-right:20px;
 }
 .modal-body{
     overflow:scroll;
-    height:400px;
+    height:350px;
     border:1px solid #fff2;
     display:flex;
     flex-wrap:wrap;
+    padding-bottom:50px;
 }
 .arr-container{
   user-select:text;
   background-color:#fff2;
+  position:relative;
 }
 .modal-body span{
     margin:5px;
@@ -268,21 +294,25 @@ nav{
 .canvas-container{
     height: 100svh;
     width: 100svw;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    background-color: var(--background);
+    background-color: #071920;
     display: none;
-    z-index: 100;
+    align-items:center;
 }
 .canvas-body{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    user-select:auto;
 }
 .canvas-body img{
-    width: 100%;
+  width:100%;
+}
+.canvas-body *{
+  user-select:auto;
 }
 @keyframes result{
     0%{transform:sclae(0);}
@@ -331,11 +361,9 @@ nav{
         right: 10px;
         top: calc(50% - 10px);
       }
-    .saved-option:hover .fa{
+      .saved-option:hover .fa{
           display: block;
       }
-    .canvas-body img{
-        width: 40%;
-}
 }
 
+    
